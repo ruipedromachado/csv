@@ -1,0 +1,15 @@
+npm install csv 
+    ===> https://csv.js.org/project/examples/ 
+    ===> https://csv.js.org/project/distributions/nodejs_cjs/
+
+npm install axios 
+
+
+
+******
+RUN
+******
+
+node csv-sync_json_endpoint_to_csv_file.js 
+// or
+node csv-sync_1_file.js
