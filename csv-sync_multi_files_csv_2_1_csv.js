@@ -11,26 +11,24 @@ const csv = require("csv/sync");
 	var headers = [];
 	var stringified = "";
 	var stringifiedColletion = [];
-  var allRows = [];
-  for (let index = 0; index < 5; index++) {
-    var i = "00" + index;
-    var fileContent = await fs.promises.readFile('./csv-files/data_2022-09-13.csv' + i.slice(-3));
-    var rows = csv.parse(fileContent, {
+	var allRows = [];
+	for (let index = 0; index < 5; index++) {
+		var i = "00" + index;
+		var fileContent = await fs.promises.readFile('./csv-files/data_2022-09-13.csv' + i.slice(-3));
+		var rows = csv.parse(fileContent, {
 			columns: true, 
 			delimiter: ",", 
 			skip_empty_lines: true, 
 			columns: h => headers = h});
-    allRows = [...allRows, ...rows];
-  }
+		allRows = [...allRows, ...rows];
+	}
 	stringifiedColletion.push(headers.join(","));
 
 	/**
 	 * filters 
 	 */
-  var a = 
-		allRows.filter(el => el.a === "1");
-	var b = 
-		allRows.filter(el => el.b === "1");
+	var a = allRows.filter(el => el.a === "1");
+	var b = allRows.filter(el => el.b === "1");
 	
 	
 	
