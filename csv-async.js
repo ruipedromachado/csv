@@ -1,31 +1,25 @@
 const fs = require("fs");
 const csv = require("csv");
 
-var header, collection = [], index = 1;
-var data = fs.createReadStream("./csv-files/t.csv")
-  .pipe(csv.parse({ delimiter: ",", from_line: 1, skip_empty_lines: true }))
+(async () => {
 
-data.on("data", row => {
-  if(index === 1) {
-    header = row;
-  } else {
-    var obj = {};
-    header.forEach((headerColumn, headerIndex) => {
-      obj[header[headerIndex]] = row[headerIndex];
-    });
-    collection.push(obj);
-  }
-  index++;
-});
-data.on("end", () => {
-  
-  var totalRecords = collection.length;
-  console.log(totalRecords);
-  console.log(collection);
-  
-  debugger;
+  var fileName = "APPOINTMENTS_GP_COVERAGE.csv";
 
-});
-data.on("error", error => {
-  console.log("error:", error.message);
-});
+  var collection = [];
+  var data = fs.createReadStream("./csv-files/" + fileName).pipe(csv.parse());
+
+  data.on("data", row => {
+    collection.push(row);
+  });
+  data.on("end", () => {
+    var totalRecords = collection.length;
+    console.log(totalRecords);
+    console.log(collection);
+  });
+  data.on("error", error => {
+    console.log("error:", error.message);
+  });
+
+	debugger;
+
+})();
