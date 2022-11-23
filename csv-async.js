@@ -3,7 +3,7 @@ const csv = require("csv");
 
 (async () => {
 
-  var fileName = "APPOINTMENTS_GP_COVERAGE.csv";
+  var fileName = "file.csv";
 
   var collection = [];
   var data = fs.createReadStream("./csv-files/" + fileName).pipe(csv.parse());
